@@ -313,15 +313,21 @@
       }, 500);
     });
 
+    /* ---------- YES BUTTON HOVER ---------- */
+    yesBtn.addEventListener("mouseenter", () => {
+      yesBtn.textContent = "JA PAPPA";
+    });
+
+    yesBtn.addEventListener("mouseleave", () => {
+      yesBtn.textContent = "Yes";
+    });
+
     /* ---------- YES CLICK ---------- */
     yesBtn.addEventListener("click", () => {
-      // Convert Yes to JAA PAPPA!
-      yesBtn.textContent = "JAA PAPPA!";
-      
       zone.style.display = "none";
       hint.style.display = "none";     // HIDE THE HINT
-      resultTitle.textContent = "JAA PAPPA!";
-      resultGif.src = "https://tenor.com/rS8Q4U7VoBb.gif";
+      resultTitle.textContent = "YAY! 🎉";
+      resultGif.style.display = "none";  // HIDE THE GIF
       result.style.display = "block";
       resizeConfettiCanvas();
       fullScreenConfetti();
