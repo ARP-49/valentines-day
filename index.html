@@ -326,8 +326,9 @@
     yesBtn.addEventListener("click", () => {
       zone.style.display = "none";
       hint.style.display = "none";     // HIDE THE HINT
-      resultTitle.textContent = "YAY! 🎉";
-      resultGif.style.display = "none";  // HIDE THE GIF
+      resultTitle.textContent = "Good, you're such a cutie 😍";
+      resultGif.src = "https://tenor.com/rS8Q4U7VoBb.gif";
+      resultGif.style.display = "block";  // SHOW THE GIF
       result.style.display = "block";
       resizeConfettiCanvas();
       fullScreenConfetti();
