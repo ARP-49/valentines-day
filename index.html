@@ -122,6 +122,34 @@
       display: block;
     }
 
+    #hoverGif {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 150px;
+      height: 150px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      display: none;
+      object-fit: cover;
+      z-index: 100;
+    }
+
+    #rightHoverGif {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 150px;
+      height: 150px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      display: none;
+      object-fit: cover;
+      z-index: 100;
+    }
+
     @keyframes pop {
       from { transform: scale(.96); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -131,6 +159,8 @@
 
 <body>
   <canvas id="confettiCanvas"></canvas>
+  <img id="hoverGif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3lxeWZjdmlqbTBhaGxsbHVlMHRiZGFkcjI3Y3VwMXBvOGhseWN4dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohfFLkRHD1gR05uQU/giphy.gif" alt="Hover animation" />
+  <img id="rightHoverGif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHJkem9yY2p4c3I3dWdlOGdqNzE0Z3JvbWM4bHdkOWM1NHcydWF4biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohfFLOPiNbGD553b2/giphy.gif" alt="No button hover" />
 
   <main class="card">
     <!-- ANIMAL WITH HEART -->
@@ -165,6 +195,8 @@
     const hint = document.getElementById("hint");
     const resultTitle = document.getElementById("resultTitle");
     const resultGif = document.getElementById("resultGif");
+    const hoverGif = document.getElementById("hoverGif");
+    const rightHoverGif = document.getElementById("rightHoverGif");
 
     /* ---------- CONFETTI ---------- */
     const confettiCanvas = document.getElementById("confettiCanvas");
@@ -281,10 +313,21 @@
     /* ---------- YES BUTTON HOVER ---------- */
     yesBtn.addEventListener("mouseenter", () => {
       yesBtn.textContent = "JA PAPPA";
+      hoverGif.style.display = "block";
     });
 
     yesBtn.addEventListener("mouseleave", () => {
       yesBtn.textContent = "Yes";
+      hoverGif.style.display = "none";
+    });
+
+    /* ---------- NO BUTTON HOVER ---------- */
+    noBtn.addEventListener("mouseenter", () => {
+      rightHoverGif.style.display = "block";
+    });
+
+    noBtn.addEventListener("mouseleave", () => {
+      rightHoverGif.style.display = "none";
     });
 
     /* ---------- YES CLICK ---------- */
