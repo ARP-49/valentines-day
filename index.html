@@ -355,30 +355,31 @@
       hint.style.display = "none";
       resultTitle.textContent = "Always No never Yes 😠";
       resultGif.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnNhMzhpNGRrdWxrbmY3c2xkdXdka21kYTE4NnVpZGM0dXVjbXJteiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5b0kImmCCI06GhIXQF/giphy.gif";
+      resultGif.style.display = "block";
       result.style.display = "block";
       
       resizeConfettiCanvas();
       fullScreenConfetti();
       
-      // Show pop-up message
+      // Show pop-up message after gif has time to display
       setTimeout(() => {
-        if (confirm("Are you sure?")) {
-          // Hide gif and show retry button
-          resultTitle.textContent = "Click anywhere to retry";
-          resultGif.style.display = "none";
-          
-          // Create retry button
-          const retryBtn = document.createElement("button");
-          retryBtn.textContent = "Retry";
-          retryBtn.className = "retry-btn";
-          result.appendChild(retryBtn);
-          
-          // Add click listener to entire page to refresh
-          document.body.style.cursor = "pointer";
-          const refreshPage = () => location.reload();
-          document.addEventListener("click", refreshPage);
-        }
-      }, 500);
+        const userChoice = confirm("Are you sure? Click OK to try again or Cancel to stay.");
+        
+        // Either way, show retry option
+        resultTitle.textContent = "Click anywhere to retry";
+        resultGif.style.display = "none";
+        
+        // Create retry button
+        const retryBtn = document.createElement("button");
+        retryBtn.textContent = "Retry";
+        retryBtn.className = "retry-btn";
+        result.appendChild(retryBtn);
+        
+        // Add click listener to entire page to refresh
+        document.body.style.cursor = "pointer";
+        const refreshPage = () => location.reload();
+        document.addEventListener("click", refreshPage);
+      }, 2000);
     });
 
     /* ---------- YES BUTTON HOVER ---------- */
