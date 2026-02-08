@@ -361,24 +361,25 @@
       resizeConfettiCanvas();
       fullScreenConfetti();
       
-      // Show pop-up message after gif has time to display
+      // Show pop-up message after gif displays for a bit
       setTimeout(() => {
-        const userChoice = confirm("Are you sure? Click OK to try again or Cancel to stay.");
-        
-        // Either way, show retry option
-        resultTitle.textContent = "Click anywhere to retry";
-        resultGif.style.display = "none";
-        
-        // Create retry button
-        const retryBtn = document.createElement("button");
-        retryBtn.textContent = "Retry";
-        retryBtn.className = "retry-btn";
-        result.appendChild(retryBtn);
-        
-        // Add click listener to entire page to refresh
-        document.body.style.cursor = "pointer";
-        const refreshPage = () => location.reload();
-        document.addEventListener("click", refreshPage);
+        if (confirm("Are you sure? You can't say no to me!")) {
+          // If they click OK, show retry option
+          resultTitle.textContent = "Click anywhere to retry";
+          resultGif.style.display = "none";
+          
+          // Create retry button
+          const retryBtn = document.createElement("button");
+          retryBtn.textContent = "Retry";
+          retryBtn.className = "retry-btn";
+          result.appendChild(retryBtn);
+          
+          // Add click listener to entire page to refresh
+          document.body.style.cursor = "pointer";
+          const refreshPage = () => location.reload();
+          document.addEventListener("click", refreshPage);
+        }
+        // If they click Cancel, gif stays visible
       }, 2000);
     });
 
