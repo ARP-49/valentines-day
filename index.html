@@ -10,8 +10,8 @@
 
   <style>
     :root {
-      --bg1: #fff4cc;
-      --bg2: #fffef0;
+      --bg1: #ffdb4d;
+      --bg2: #fff3a3;
       --card: #ffffffcc;
       --yes: #ff8c00;
       --yesHover: #ff7700;
@@ -127,8 +127,8 @@
       left: 80px;
       top: 50%;
       transform: translateY(-50%);
-      width: 200px;
-      height: 200px;
+      width: 280px;
+      height: 280px;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,.2);
       display: none;
@@ -141,8 +141,8 @@
       right: 80px;
       top: 50%;
       transform: translateY(-50%);
-      width: 200px;
-      height: 200px;
+      width: 280px;
+      height: 280px;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,.2);
       display: none;
@@ -172,6 +172,23 @@
         transform: translateY(-50px) scale(0.3);
         opacity: 0;
       }
+    }
+
+    .retry-btn {
+      margin-top: 20px;
+      padding: 16px 40px;
+      font-size: 20px;
+      font-weight: 800;
+      border-radius: 999px;
+      border: none;
+      background: var(--yes);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,.14);
+      transition: background .2s ease;
+    }
+    .retry-btn:hover {
+      background: var(--yesHover);
     }
   </style>
 </head>
@@ -229,6 +246,7 @@
       heart.textContent = "❤";
       heart.style.left = e.clientX - 10 + "px";
       heart.style.top = e.clientY - 10 + "px";
+      heart.style.color = "#ff1744";
       document.body.appendChild(heart);
 
       setTimeout(() => {
@@ -303,8 +321,8 @@
       dx /= mag;
       dy /= mag;
 
-      let newLeft = (b.left - z.left) + dx * 200;
-      let newTop  = (b.top - z.top) + dy * 200;
+      let newLeft = (b.left - z.left) + dx * 280;
+      let newTop  = (b.top - z.top) + dy * 280;
 
       newLeft = clamp(newLeft, 0, z.width - b.width);
       newTop  = clamp(newTop, 0, z.height - b.height);
@@ -322,7 +340,7 @@
         (b.left + b.width / 2) - e.clientX,
         (b.top + b.height / 2) - e.clientY
       );
-      if (d < 200) moveNo(e.clientX, e.clientY);
+      if (d < 280) moveNo(e.clientX, e.clientY);
     });
 
     noBtn.addEventListener("click", e => {
@@ -344,7 +362,22 @@
       
       // Show pop-up message
       setTimeout(() => {
-        alert("Are you sure? You can't say no to me! 😈");
+        if (confirm("Are you sure?")) {
+          // Hide gif and show retry button
+          resultTitle.textContent = "Click anywhere to retry";
+          resultGif.style.display = "none";
+          
+          // Create retry button
+          const retryBtn = document.createElement("button");
+          retryBtn.textContent = "Retry";
+          retryBtn.className = "retry-btn";
+          result.appendChild(retryBtn);
+          
+          // Add click listener to entire page to refresh
+          document.body.style.cursor = "pointer";
+          const refreshPage = () => location.reload();
+          document.addEventListener("click", refreshPage);
+        }
       }, 500);
     });
 
