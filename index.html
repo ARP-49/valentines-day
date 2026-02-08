@@ -95,9 +95,10 @@
 
     #noBtn {
       left: 62%;
-      background: #e5e7eb;
-      color: #111827;
+      background: var(--yes);
+      color: #fff;
     }
+    #noBtn:hover { background: var(--yesHover); }
 
     .hint {
       margin-top: 10px;
@@ -302,7 +303,7 @@
     /* ---------- YES BUTTON GROWS ---------- */
     let yesScale = 1;
     function growYes() {
-      yesScale = Math.min(3.5, yesScale + 0.15);
+      yesScale = Math.min(4.0, yesScale + 0.2);
       yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`;
     }
 
@@ -321,8 +322,8 @@
       dx /= mag;
       dy /= mag;
 
-      let newLeft = (b.left - z.left) + dx * 280;
-      let newTop  = (b.top - z.top) + dy * 280;
+      let newLeft = (b.left - z.left) + dx * 350;
+      let newTop  = (b.top - z.top) + dy * 350;
 
       newLeft = clamp(newLeft, 0, z.width - b.width);
       newTop  = clamp(newTop, 0, z.height - b.height);
@@ -340,7 +341,7 @@
         (b.left + b.width / 2) - e.clientX,
         (b.top + b.height / 2) - e.clientY
       );
-      if (d < 280) moveNo(e.clientX, e.clientY);
+      if (d < 350) moveNo(e.clientX, e.clientY);
     });
 
     noBtn.addEventListener("click", e => {
