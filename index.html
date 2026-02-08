@@ -352,7 +352,6 @@
       
       // Show result with custom message and gif
       zone.style.display = "none";
-      hint.style.display = "none";
       resultTitle.textContent = "Always No never Yes 😠";
       resultGif.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnNhMzhpNGRrdWxrbmY3c2xkdXdka21kYTE4NnVpZGM0dXVjbXJteiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5b0kImmCCI06GhIXQF/giphy.gif";
       resultGif.style.display = "block";
@@ -361,26 +360,10 @@
       resizeConfettiCanvas();
       fullScreenConfetti();
       
-      // Show pop-up message after gif displays for a bit
+      // Show alert after viewing the gif
       setTimeout(() => {
-        if (confirm("Are you sure? You can't say no to me!")) {
-          // If they click OK, show retry option
-          resultTitle.textContent = "Click anywhere to retry";
-          resultGif.style.display = "none";
-          
-          // Create retry button
-          const retryBtn = document.createElement("button");
-          retryBtn.textContent = "Retry";
-          retryBtn.className = "retry-btn";
-          result.appendChild(retryBtn);
-          
-          // Add click listener to entire page to refresh
-          document.body.style.cursor = "pointer";
-          const refreshPage = () => location.reload();
-          document.addEventListener("click", refreshPage);
-        }
-        // If they click Cancel, gif stays visible
-      }, 2000);
+        alert("Always No never Yes! 😈");
+      }, 1500);
     });
 
     /* ---------- YES BUTTON HOVER ---------- */
