@@ -389,10 +389,9 @@
     /* ---------- YES CLICK ---------- */
     yesBtn.addEventListener("click", () => {
       zone.style.display = "none";
-      hint.style.display = "none";     // HIDE THE HINT
       resultTitle.textContent = "Good, you're such a cutie 😍";
       resultGif.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcncyZmlycjVzdWkzeHljNGR5ZDV4ZnU0N2l0ZTE0MGM3NGE4czdsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/n8TST7j1H0QJT3vC7p/giphy.gif";
-      resultGif.style.display = "block";  // SHOW THE GIF
+      resultGif.style.display = "block";
       result.style.display = "block";
       resizeConfettiCanvas();
       fullScreenConfetti();
