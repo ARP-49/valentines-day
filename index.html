@@ -124,7 +124,7 @@
 
     #hoverGif {
       position: fixed;
-      left: 20px;
+      left: 80px;
       top: 50%;
       transform: translateY(-50%);
       width: 200px;
@@ -138,7 +138,7 @@
 
     #rightHoverGif {
       position: fixed;
-      right: 20px;
+      right: 80px;
       top: 50%;
       transform: translateY(-50%);
       width: 200px;
@@ -153,6 +153,25 @@
     @keyframes pop {
       from { transform: scale(.96); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
+    }
+
+    .cursor-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      font-size: 20px;
+      animation: heartFloat 1s ease-out forwards;
+    }
+
+    @keyframes heartFloat {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-50px) scale(0.3);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -174,7 +193,7 @@
     </section>
 
     <!-- HINT -->
-    <div class="hint" id="hint"> You love “No” but it doesn't love you back! 😈</div>
+    <!-- <div class="hint" id="hint"> You love “No” but it doesn't love you back! 😈</div> -->
 
     <section class="result" id="result">
       <h2 id="resultTitle">YAY! 🎉</h2>
@@ -197,6 +216,25 @@
     const resultGif = document.getElementById("resultGif");
     const hoverGif = document.getElementById("hoverGif");
     const rightHoverGif = document.getElementById("rightHoverGif");
+
+    /* ---------- CURSOR HEART TRAIL ---------- */
+    let lastHeartTime = 0;
+    document.addEventListener("mousemove", (e) => {
+      const now = Date.now();
+      if (now - lastHeartTime < 50) return; // Throttle to create hearts every 50ms
+      lastHeartTime = now;
+
+      const heart = document.createElement("div");
+      heart.className = "cursor-heart";
+      heart.textContent = "❤";
+      heart.style.left = e.clientX - 10 + "px";
+      heart.style.top = e.clientY - 10 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 1000);
+    });
 
     /* ---------- CONFETTI ---------- */
     const confettiCanvas = document.getElementById("confettiCanvas");
